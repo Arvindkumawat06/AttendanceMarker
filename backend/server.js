@@ -1,0 +1,21 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import teachersRoutes from './Routes/teachers.route.js';
+import { connectDB } from './utils/db.js';
+dotenv.config();
+const app = express();
+
+app.get('/', (req,res) => {
+  res.send("Sri Ganeshay Namah");
+});
+
+app.use(express.json());
+
+app.use('/api/teachers', teachersRoutes);
+
+connectDB().then(() => {
+  console.log('Connected to MongoDB');
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  });
+});
