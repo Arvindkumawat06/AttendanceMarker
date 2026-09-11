@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import teachersRoutes from './Routes/teachers.route.js';
 import { connectDB } from './utils/db.js';
 import cors from 'cors';
@@ -13,6 +14,7 @@ app.get('/', (req,res) => {
 });
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/teachers', teachersRoutes);
 
