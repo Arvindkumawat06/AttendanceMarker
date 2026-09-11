@@ -5,7 +5,7 @@ import {teachersRegister} from '../Controllers/teacher.controller.js';
 const router = express.Router();
 
 
-router.get('/login', teachersLogin);
+router.post('/login', teachersLogin);
 router.post('/register', teachersRegister);
 
 export default router;

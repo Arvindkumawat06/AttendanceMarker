@@ -15,9 +15,8 @@ export const teachersRegister = async (req, res) => {
             email,
             password: hashedPassword
         });
-        console.log("Token generated for teacher:", token);
         await teacher.save();
-        res.status(201).json(teacher); // Exclude password from response
+        res.status(201).json(teacher);
     } catch (error) {
         console.error("Error in Teacher Register",error.message);
         res.status(400).json({ message: 'Internal Server Error' });
