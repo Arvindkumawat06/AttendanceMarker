@@ -1,16 +1,22 @@
 import express from 'express';
 import {teachersLogin} from '../Controllers/teacher.controller.js';
 import {teachersRegister} from '../Controllers/teacher.controller.js';
-import {createClass} from '../Controllers/teacher.controller.js';
-import {addStudentToClass} from '../Controllers/teacher.controller.js';
+import {createClass} from '../Controllers/class.controller.js';
+import {getAllClasses} from '../Controllers/class.contoller.js';
 import { ProtectRoute} from '../middleware/teacher.middleware.js';
 
 const router = express.Router();
 
 
+router.get('/protected', ProtectRoute, (req, res) => {
+    res.status(200).json({ message: 'You have accessed a protected route', teacher: req.teacher });
+});
+
 router.post('/login', teachersLogin);
 router.post('/register', teachersRegister);
-router.post('/create-class', ProtectRoute, createClass);
-router.post('/add-student', ProtectRoute, addStudentToClass);
+
+//class routes
+router.get('/getAllClasses', ProtectRoute, getAllClasses);
+router.post('/createClass', ProtectRoute, createClass);
 
 export default router;
