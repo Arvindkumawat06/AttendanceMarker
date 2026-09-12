@@ -12,6 +12,8 @@ const SignUpPage = () => {
             name,
             email,
             password    
+        }, {
+            withCredentials: true
         })
         .then((response) => {
             navigate('/dashboard');
