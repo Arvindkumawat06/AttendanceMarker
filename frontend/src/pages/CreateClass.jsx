@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const CreateClass = () => {
   const [classes, setClasses] = useState([]);
 
@@ -58,6 +58,7 @@ const CreateClass = () => {
               console.error("Error deleting class:", error);
             });
           }}>Delete</button>
+          <Link to = '/students' state={{ classId: classItem._id }} >Add Student</Link>
         </div>
       ))}
       
