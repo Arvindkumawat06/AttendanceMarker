@@ -17,9 +17,10 @@ const studentSchema = new mongoose.Schema({
     },
     faceDescriptor : {
         type : [Number],
+        default : [],
         validate : {
             validator : function(value){
-                return value.length === 128;
+                return value.length === 128 || value.length === 0;
             },
             message : 'Face descriptor must be an array of 128 numbers'
         }

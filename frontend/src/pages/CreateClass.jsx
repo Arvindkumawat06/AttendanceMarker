@@ -58,7 +58,7 @@ const CreateClass = () => {
               console.error("Error deleting class:", error);
             });
           }}>Delete</button>
-          <Link to = '/students' state={{ classId: classItem._id }} >Add Student</Link>
+          <Link to = {`/add-student/${classItem._id}`}>Add Student</Link>
         </div>
       ))}
       
