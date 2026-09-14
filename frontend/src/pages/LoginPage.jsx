@@ -14,6 +14,9 @@ const LoginPage = () => {
         axios.post('http://localhost:8080/api/teachers/login', {
             email,
             password
+
+        }, {
+            withCredentials: true
         })
         .then((response) => {
             console.log(response.data);

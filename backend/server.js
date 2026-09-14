@@ -6,15 +6,18 @@ import { connectDB } from './utils/db.js';
 import cors from 'cors';
 dotenv.config();
 const app = express();
+
 app.use(cors({
   origin: 'http://localhost:5173',
+  credentials: true,
 }));
-app.get('/', (req,res) => {
-  res.send("Sri Ganeshay Namah");
-});
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.get('/', (_,res) => {
+  res.send("Sri Ganeshay Namah");
+});
 
 app.use('/api/teachers', teachersRoutes);
 
