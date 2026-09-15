@@ -2,7 +2,8 @@ import express from 'express';
 import {teachersLogin} from '../Controllers/teacher.controller.js';
 import {teachersRegister} from '../Controllers/teacher.controller.js';
 import {getAllClasses, createClass, deleteClass} from '../Controllers/class.controller.js';
-import {addStudent, getAllStudents, deleteStudent} from '../Controllers/student.controller.js';
+import {addStudent, getAllStudents, deleteStudent, saveFaceDescriptor} from '../Controllers/student.controller.js';
+import { createAttendanceSession, getAttendanceByDate, getAttendanceHistory, updateAttendance, markAttendanceByFace } from '../Controllers/attendance.controller.js';
 import { ProtectRoute} from '../middleware/teacher.middleware.js';
 
 const router = express.Router();
@@ -25,5 +26,37 @@ router.delete('/deleteClass/:id', ProtectRoute, deleteClass);
 router.get('/getAllStudents/:classId', ProtectRoute, getAllStudents);
 router.post('/addStudent/:classId', ProtectRoute, addStudent);
 router.delete('/deleteStudent/:studentId', ProtectRoute, deleteStudent);
+router.put('/student/:studentId/face-descriptor', ProtectRoute, saveFaceDescriptor);
+
+//attrendance routes
+router.post(
+    "/createAttendance/:classId",
+    ProtectRoute,
+    createAttendanceSession
+);
+
+router.get(
+    "/getAttendance/:classId/:date",
+    ProtectRoute,
+    getAttendanceByDate
+);
+
+router.get(
+    "/getAttendanceHistory/:classId",
+    ProtectRoute,
+    getAttendanceHistory
+);
+
+router.put(
+    "/updateAttendance/:sessionId/:studentId",
+    ProtectRoute,
+    updateAttendance
+);
+
+router.post(
+    "/markAttendanceByFace/:classId",
+    ProtectRoute,
+    markAttendanceByFace
+);
 
 export default router;

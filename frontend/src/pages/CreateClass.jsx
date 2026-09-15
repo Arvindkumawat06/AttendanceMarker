@@ -59,6 +59,8 @@ const CreateClass = () => {
             });
           }}>Delete</button>
           <Link to = {`/add-student/${classItem._id}`}>Add Student</Link>
+          <Link to = {`/face-attendance/${classItem._id}`}>Mark Attendance</Link>
+          <Link to = {`/attendance-history/${classItem._id}`}>Attendance History</Link>
         </div>
       ))}
       
